@@ -23,7 +23,7 @@ genAndAddSshKey() {
 		echo "NON esiste!"
 
 		# Generating a new SSH key
-		ssh-keygen -t ed25519 -C "${gitUsrEmail}"
+		ssh-keygen -t ed25519 -C $(git config user.email)
 
 		# Adding your SSH key to the ssh-agent
 		eval "$(ssh-agent -s)"
