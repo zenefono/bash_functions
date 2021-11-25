@@ -10,6 +10,9 @@ provaCiao(){
   echo "ciao io sono una funzione di prova"
 }
 
+dockerStopAllContainers() {
+	docker kill $(docker ps -q)
+}
 
 ## MAIN LOOP FOR FILE OF FUNCTIONS TO INCLUDE
 main() {
