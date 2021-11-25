@@ -6,7 +6,7 @@ includeLocalFile(){
 }
 includeLocalFile gitFunctions.sh
 
-prova(){
+provaCiao(){
   echo "ciao io sono una funzione di prova"
 }
 
