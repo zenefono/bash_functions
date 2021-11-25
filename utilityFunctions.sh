@@ -133,7 +133,7 @@ cmdInstall () {
 		# get version or install
 		ver=$(getCmdVersion $i)
 		if [ "${ver}" == "not installed" ]; then
-			confirm "Installare il programma $i richiesto?" && $( install_"${i}" --test 2> /dev/null && install_"${i}" || apt install $i -y )
+			confirm "Installare il programma $i richiesto?" && $( sudo install_"${i}" --test 2> /dev/null && sudo install_"${i}" || sudo apt install $i -y )
 		fi
 
 		# choose color
