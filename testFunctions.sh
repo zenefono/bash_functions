@@ -14,7 +14,7 @@ dockerStopAllContainers() {
 	docker kill $(docker ps -q)
 }
 
-dotenvFromExample() {
+old_dotenvFromExample() {
 	# --> get file contents and convert them to an array
 	readarray thearray < $1
 
@@ -41,6 +41,23 @@ dotenvFromExample() {
 	printf "%s\n" "${thearray[@]}"
 
 	echo "Everything done!"
+}
+
+dotenvFromExample() {
+	Counter=0
+
+	function process_line() {
+
+	    echo "Processing line $Counter: $1"
+
+	}
+
+	while IFS='' read -r LinefromFile || [[ -n "${LinefromFile}" ]]; do
+
+	    ((Counter++))
+	    process_line "$LinefromFile"
+
+	done < "$1"
 }
 
 genAndAddSshKey() {
