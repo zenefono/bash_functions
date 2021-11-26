@@ -40,7 +40,7 @@ dotenvFromExample() {
 	echo "printing results\n"
 	printf "%s\n" "${thearray[@]}"
 
-	echo "Everything done!
+	echo "Everything done!"
 }
 
 genAndAddSshKey() {
