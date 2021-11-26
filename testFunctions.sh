@@ -47,16 +47,13 @@ dotenvFromExample() {
 	Counter=0
 
 	function process_line() {
-		if [] ; then
-	    		echo "Processing line $Counter: $1"
-		fi
-
+	    	echo "Processing line $Counter: $1"
 	}
 
 	while IFS='' read -r LinefromFile || [[ -n "${LinefromFile}" ]]; do
 
 		((Counter++))
-		echo "$LinefromFile"
+		
 		if [[ "$LinefromFile" == *"\="* ]]; then
 		  process_line "$LinefromFile"
 		fi
