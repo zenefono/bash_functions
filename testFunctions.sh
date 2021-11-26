@@ -56,7 +56,7 @@ dotenvFromExample() {
 	while IFS='' read -r LinefromFile || [[ -n "${LinefromFile}" ]]; do
 
 		((Counter++))
-		
+		echo "$LinefromFile"
 		if [[ "$LinefromFile" == *"\="* ]]; then
 		  process_line "$LinefromFile"
 		fi
