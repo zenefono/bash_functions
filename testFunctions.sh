@@ -50,10 +50,7 @@ dotenvFromExample() {
                 key=$(echo $1 | cut -d '=' -f 1)
                 val=$(echo $1 | cut -d '=' -f 2)
                 echo "chiave: $key | valore: $val"
-                confirm
-                inputPromptOrDefault "impostare $key" "$val"
-                confirm
-                echo ""
+                read -p "premi INVIO per continuare... "
         }
 
         while IFS='' read -r LinefromFile || [[ -n "${LinefromFile}" ]]; do
