@@ -8,7 +8,7 @@ includeLocalFile gitFunctions.sh
 
 provaCiao(){
   echo "ciao io sono una funzione di prova"
-  continue
+  goOn
 }
 
 dockerStopAllContainers() {
@@ -86,6 +86,37 @@ genAndAddSshKey() {
 		echo "Go to https://github.com/settings/keys and add it to GitHub"
 
 	fi
+}
+
+
+importPublicRepo(){ # usage: importPublicRepo "hostDomain" "serviceName" "publicRepoUri" "privateDotEnv"
+	hostDomain="${1}"
+	serviceName="${2}"
+	publicRepoUri="${3}"
+	privateDotEnv="${4}"
+	
+	echo "clone ${serviceName} service public repo for ${hostDomain}"
+	
+	git clone "${publicRepoUri}" "./${serviceName}.${hostDomain}"
+
+	echo ""	
+	echo "set file .env"	
+	#dotenvFromExample ./"traefik.${1}"/env.example ./"traefik.${hostDomain}"/.env
+	
+	# from: https://gist.github.com/madrobby/9476733#gistcomment-2817366
+	USER="$(git config user.name)"
+	PASSWD=""
+	OUTPUT_FILEPATH="${privateDotEnv}"
+	OWNER="mycompany"
+	REPOSITORY="boo"
+	RESOURCE_PATH="project-x/a/b/c.py"
+	TAG="my_unit_test"
+	
+	curl \
+	    -u "$USER:$PASSWD" \
+	    -H 'Accept: application/vnd.github.v4.raw' \
+	    -o "$OUTPUT_FILEPATH" \
+	    -L "https://api.github.com/repos/$OWNER/$REPOSITORY/contents/$RESOURCE_PATH?ref=$TAG"
 }
 
 
