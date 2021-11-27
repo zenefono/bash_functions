@@ -8,6 +8,7 @@ includeLocalFile gitFunctions.sh
 
 provaCiao(){
   echo "ciao io sono una funzione di prova"
+  continue
 }
 
 dockerStopAllContainers() {
