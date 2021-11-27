@@ -44,22 +44,29 @@ old_dotenvFromExample() {
 }
 
 dotenvFromExample() {
-	Counter=0
+        Counter=0
+        function process_line() {
+                echo "Processing line $Counter: $1"
+                key=$(echo $1 | cut -d '=' -f 1)
+                val=$(echo $1 | cut -d '=' -f 2)
+                echo "chiave: $key | valore: $val"
+                confirm
+                inputPromptOrDefault "impostare $key" "$val"
+                confirm
+                echo ""
+        }
 
-	function process_line() {
-	    	echo "Processing line $Counter: $1"
-	}
+        while IFS='' read -r LinefromFile || [[ -n "${LinefromFile}" ]]; do
 
-	while IFS='' read -r LinefromFile || [[ -n "${LinefromFile}" ]]; do
+                ((Counter++))
 
-		((Counter++))
-		
-		if [[ "$LinefromFile" == *"\="* ]]; then
-		  process_line "$LinefromFile"
-		fi
+                if [[ "$LinefromFile" == *'='* ]]; then
+                  process_line "$LinefromFile"
+                fi
 
-	done < "$1"
+        done < "$1"
 }
+
 
 genAndAddSshKey() {
 	# da: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
