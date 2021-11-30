@@ -119,6 +119,16 @@ importPublicRepo(){ # usage: importPublicRepo "hostDomain" "serviceName" "public
 	    -L "https://api.github.com/repos/$OWNER/$REPOSITORY/contents/$RESOURCE_PATH?ref=$TAG"
 }
 
+setupServerInfrastructure(){
+	hostDomain=$(inputPromptOrDefault "Inserire il nome di dominio: " "domain.example")
+	
+	# import traefik.bjphoster.com.git
+	serviceName="traefik"
+	publicRepoUri="git@github.com:bryanpedini-deployments/traefik.bjphoster.com.git"
+	privateDotEnv="https://github.com/zenefono/dotenv/blob/main/env.traefik"
+	confirm "importare repo $(echo $publicRepoUri) per il servizio $serviceName" && importPublicRepo "$hostDomain" "$serviceName" "$publicRepoUri" "$privateDotEnv"
+}
+
 
 ## MAIN LOOP FOR FILE OF FUNCTIONS TO INCLUDE
 main() {
