@@ -84,7 +84,7 @@ genAndAddSshKey() {
 		echo "Select and copy the following public key"
 		cat ~/.ssh/$(git config user.name)_ed25519.pub
 		echo ""
-		echo "Go to https://github.com/settings/keys and add it to GitHub"
+		echo "Go to https://github.com/settings/keys and add it to the list of SSH keys associated with your account."
 
 	fi
 }
