@@ -75,14 +75,15 @@ genAndAddSshKey() {
 		echo "NON esiste!"
 
 		# Generating a new SSH key
-		ssh-keygen -t ed25519 -C $(git config user.email)
+		ssh-keygen -f ~/.ssh/$(git config user.name)_ed25519 -t ed25519 -C $(git config user.email) 
 
 		# Adding your SSH key to the ssh-agent
 		eval "$(ssh-agent -s)"
-		ssh-add ~/.ssh/id_ed25519
-		cat ~/.ssh/id_ed25519.pub
+		ssh-add ~/.ssh/$(git config user.name)_ed25519
 		echo ""
-		echo "Select and copy the contents of the id_ed25519.pub file"
+		echo "Select and copy the following public key"
+		cat ~/.ssh/$(git config user.name)_ed25519.pub
+		echo ""
 		echo "Go to https://github.com/settings/keys and add it to GitHub"
 
 	fi
