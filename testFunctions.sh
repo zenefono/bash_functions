@@ -80,11 +80,11 @@ genAndAddSshKey() {
 		# Adding your SSH key to the ssh-agent
 		eval "$(ssh-agent -s)"
 		ssh-add ~/.ssh/$(git config user.name)_ed25519
-		miachiave="$(git config user.name)_ed25519.pub"
+		miachiave="~/.ssh/$(git config user.name)_ed25519.pub"
 	fi
 	echo ""
 	echo "Select and copy the following public key"
-	cat ~/.ssh/$miachiave
+	cat $miachiave
 	echo ""
 	echo "Go to https://github.com/settings/keys and add it to the list of SSH keys associated with your account."
 
