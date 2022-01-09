@@ -70,7 +70,7 @@ genAndAddSshKey() {
 	# da: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 	# Lists the files in your .ssh directory, if they exist
 	if ls ~/.ssh/*.pub 2> /dev/null; then
-		echo "TODO! selezionare la chiave ssh"
+		read -p "copiare ed inserire qui la chiave ssh: " miachiave
 	else
 		echo "NON esiste!"
 
@@ -80,13 +80,14 @@ genAndAddSshKey() {
 		# Adding your SSH key to the ssh-agent
 		eval "$(ssh-agent -s)"
 		ssh-add ~/.ssh/$(git config user.name)_ed25519
-		echo ""
-		echo "Select and copy the following public key"
-		cat ~/.ssh/$(git config user.name)_ed25519.pub
-		echo ""
-		echo "Go to https://github.com/settings/keys and add it to the list of SSH keys associated with your account."
-
+		miachiave="$(git config user.name)_ed25519.pub"
 	fi
+	echo ""
+	echo "Select and copy the following public key"
+	cat ~/.ssh/$miachiave
+	echo ""
+	echo "Go to https://github.com/settings/keys and add it to the list of SSH keys associated with your account."
+
 }
 
 
