@@ -69,7 +69,7 @@ dotenvFromExample() {
 genAndAddSshKey() {
 	# da: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 	# Lists the files in your .ssh directory, if they exist
-	if ls -al ~/.ssh 2> /dev/null; then
+	if ls -al ~/.ssh/*.pub 2> /dev/null; then
 		echo "TODO! selezionare la chiave ssh"
 	else
 		echo "NON esiste!"
